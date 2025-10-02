@@ -71,12 +71,7 @@ namespace CRUDAcademy_10022025.BLogic
             int countStudenti = studenti.Count;
             if (countStudenti == 0)
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Non ci sono studenti nell'archivio");
-                Console.WriteLine(rowSeparator);
-                Console.ForegroundColor = ConsoleColor.White;
-                LoadingMenu();
-                MenuManager.MainMenu();
+                NoStudenti();
             }
             else
             {
@@ -101,12 +96,7 @@ namespace CRUDAcademy_10022025.BLogic
             Console.Clear();
             if (studenti.Count == 0)
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Non ci sono studenti nell'archivio");
-                Console.WriteLine(rowSeparator);
-                Console.ForegroundColor = ConsoleColor.White;
-                LoadingMenu();
-                MenuManager.MainMenu();
+                NoStudenti();
             }
             else
             {
@@ -143,12 +133,7 @@ namespace CRUDAcademy_10022025.BLogic
             Console.Clear();
             if (studenti.Count == 0)
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Non ci sono studenti nell'archivio");
-                Console.WriteLine(rowSeparator);
-                Console.ForegroundColor = ConsoleColor.White;
-                LoadingMenu();
-                MenuManager.MainMenu();
+                NoStudenti();
             }
             else
             {
@@ -176,12 +161,7 @@ namespace CRUDAcademy_10022025.BLogic
             Console.Clear();
             if (studenti.Count == 0)
             {
-                Console.ForegroundColor = ConsoleColor.Blue;
-                Console.WriteLine("Non ci sono studenti nell'archivio");
-                Console.WriteLine(rowSeparator);
-                Console.ForegroundColor = ConsoleColor.White;
-                LoadingMenu();
-                MenuManager.MainMenu();
+                NoStudenti();
             }
             Hobby hobby = new Hobby();
 
@@ -227,6 +207,16 @@ namespace CRUDAcademy_10022025.BLogic
             Thread.Sleep(2000); // Waits for 2000 milliseconds (2 seconds)
             Console.WriteLine(rowSeparator);
             Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        public static void NoStudenti()
+        {
+            string rowSeparator = new string('-', 100);
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine("Non ci sono studenti nell'archivio");
+            Console.ForegroundColor = ConsoleColor.White;
+            LoadingMenu();
+            MenuManager.MainMenu();
         }
     }
 
