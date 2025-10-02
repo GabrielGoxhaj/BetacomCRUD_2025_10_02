@@ -11,18 +11,18 @@ namespace CRUDAcademy_10022025.BLogic
         public static void MainMenu()
         {
             string rowSeparator = new string('-', 100);
-
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("===== Menù Studenti Betacom =====");
+            Console.WriteLine("========= Menù Studenti Betacom =========");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("1. Aggiungere studente");
             Console.WriteLine("2. Vedere tutti gli studenti");
             Console.WriteLine("3. Aggiornare studente");
             Console.WriteLine("4. Eliminare uno studente");
-
+            Console.WriteLine("5. Creare un hobby per uno degli studenti");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("5. Chiudere il programma");
+            Console.WriteLine("6. Chiudere il programma");
 
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(rowSeparator);
@@ -46,7 +46,14 @@ namespace CRUDAcademy_10022025.BLogic
                     CRUD.EliminaStudente();
                     break;
                 case 5:
+                    CRUD.CreaHobby();
+                    break;
+                case 6:
                     Console.WriteLine("Adieau e buon caffè");
+                    break;
+                default:
+                    Console.WriteLine("Non hai inserito un valore corretto");
+                    MenuManager.MainMenu();
                     break;
             }
         }

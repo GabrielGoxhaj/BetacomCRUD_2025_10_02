@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CRUDAcademy_10022025.BLogic;
 
 namespace CRUDAcademy_10022025.BLogic
 {
     public class CRUD
     {
         private static List<Studente> studenti = new();
+        private static List<Hobby> hobbies = new();
         public static void CreaStudente()
         {
             string rowSeparator = new string('-', 100);
@@ -58,10 +60,11 @@ namespace CRUDAcademy_10022025.BLogic
             Console.WriteLine(rowSeparator);
             Console.WriteLine($"Lo studente {studente.Nome} {studente.Cognome} è stato creato con successo");
             Console.ForegroundColor = ConsoleColor.White;
+            LoadingMenu();
             MenuManager.MainMenu();
         }
 
-        public static void MostraStudenti()
+        public static async Task MostraStudenti()
         {
             Console.Clear();
             string rowSeparator = new string('-', 100);
@@ -72,6 +75,7 @@ namespace CRUDAcademy_10022025.BLogic
                 Console.WriteLine("Non ci sono studenti nell'archivio");
                 Console.WriteLine(rowSeparator);
                 Console.ForegroundColor = ConsoleColor.White;
+                LoadingMenu();
                 MenuManager.MainMenu();
             }
             else
@@ -82,7 +86,11 @@ namespace CRUDAcademy_10022025.BLogic
                     Console.WriteLine($"{s.Nome} {s.Cognome} - {s.Città}, {s.Indirizzo} - Email: {s.Email} - Telefono: {s.Telefono} - Identificativo: {s.Id}");
                 }
                 Console.WriteLine();
+                Console.WriteLine("Premi un tasto qualunque per tornare al menù principale");
+                Console.ReadKey();
+                LoadingMenu();
                 MenuManager.MainMenu();
+
             }
         }
 
@@ -97,6 +105,7 @@ namespace CRUDAcademy_10022025.BLogic
                 Console.WriteLine("Non ci sono studenti nell'archivio");
                 Console.WriteLine(rowSeparator);
                 Console.ForegroundColor = ConsoleColor.White;
+                LoadingMenu();
                 MenuManager.MainMenu();
             }
             else
@@ -120,6 +129,7 @@ namespace CRUDAcademy_10022025.BLogic
                         {
                             studenti.Remove(s);
                             Console.WriteLine("Hai cancellato lo studente con successo");
+                            LoadingMenu();
                             MenuManager.MainMenu();
                         }
                     }
@@ -127,10 +137,98 @@ namespace CRUDAcademy_10022025.BLogic
             }
         }
 
-
         public static void AggiornaStudente()
         {
+            string rowSeparator = new string('-', 100);
+            Console.Clear();
+            if (studenti.Count == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Non ci sono studenti nell'archivio");
+                Console.WriteLine(rowSeparator);
+                Console.ForegroundColor = ConsoleColor.White;
+                LoadingMenu();
+                MenuManager.MainMenu();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Quale di questi studenti vuoi aggiornare? Inserisci l'identificativo");
+                Console.ForegroundColor = ConsoleColor.White;
+                foreach (var s in studenti)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(rowSeparator);
+                    Console.WriteLine($"{s.Nome} {s.Cognome} - {s.Città}, {s.Indirizzo} - Email: {s.Email} - Telefono: {s.Telefono} - Identificativo: {s.Id}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    string editingId = Console.ReadLine();
+                    if (editingId == s.Id)
+                    {
+                        AggiornaStudenteSelezionato.MenuAggiornaStudente();
+                    }
+                }
+            }
+        }
 
+        public static void CreaHobby()
+        {
+            string rowSeparator = new string('-', 100);
+            Console.Clear();
+            if (studenti.Count == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Non ci sono studenti nell'archivio");
+                Console.WriteLine(rowSeparator);
+                Console.ForegroundColor = ConsoleColor.White;
+                LoadingMenu();
+                MenuManager.MainMenu();
+            }
+            Hobby hobby = new Hobby();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Inserisci il nome dell'hobby:");
+            Console.ForegroundColor = ConsoleColor.White;
+            hobby.Nome = Console.ReadLine();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Inserisci un numero per indicare la frequenza settimanale (da 1 a 7 giorni alla settimana):");
+            Console.ForegroundColor = ConsoleColor.White;
+            hobby.FrequenzaSettimanale = Convert.ToInt16(Console.ReadLine());
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Inserisci la tipologia di hobby:");
+            Console.ForegroundColor = ConsoleColor.White;
+            hobby.Tipologia = Console.ReadLine();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Inserisci la descrizione:");
+            Console.ForegroundColor = ConsoleColor.White;
+            hobby.Descrizione = Console.ReadLine();
+
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Inserisci l'anno d'inizio di frequentazione dell'hobby:");
+            Console.ForegroundColor = ConsoleColor.White;
+            hobby.AnnoInizio = Convert.ToInt16(Console.ReadLine());
+            hobbies.Add(hobby);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(rowSeparator);
+            Console.WriteLine($"L'hobby {hobby.Nome} ({hobby.Descrizione}, iniziato nell'anno {hobby.AnnoInizio}) è stato creato con successo");
+            Console.ForegroundColor = ConsoleColor.White;
+            LoadingMenu();
+            MenuManager.MainMenu();
+        }
+        public static void LoadingMenu()
+        {
+            string rowSeparator = new string('-', 100);
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine(rowSeparator);
+            Console.WriteLine("Caricando il menù principale...");
+            Thread.Sleep(2000); // Waits for 2000 milliseconds (2 seconds)
+            Console.WriteLine(rowSeparator);
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
+
+
 }
