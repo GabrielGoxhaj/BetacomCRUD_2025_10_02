@@ -9,9 +9,5 @@ namespace CRUDAcademy_10022025
         {
             MenuManager.MainMenu();
         }
-
     }
 }
-
-
-

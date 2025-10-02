@@ -13,8 +13,7 @@ namespace CRUDAcademy_10022025.BLogic
             string rowSeparator = new string('-', 100);
             Console.Clear();
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("========= Menù Studenti Betacom =========");
-
+            Console.WriteLine("========= Gestionale Studenti Betacom =========");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("1. Aggiungere studente");
             Console.WriteLine("2. Vedere tutti gli studenti");
