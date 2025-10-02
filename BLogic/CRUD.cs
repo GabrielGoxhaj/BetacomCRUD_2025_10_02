@@ -64,10 +64,14 @@ namespace CRUDAcademy_10022025.BLogic
         public static void MostraStudenti()
         {
             Console.Clear();
+            string rowSeparator = new string('-', 100);
             int countStudenti = studenti.Count;
             if (countStudenti == 0)
             {
+                Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Non ci sono studenti nell'archivio");
+                Console.WriteLine(rowSeparator);
+                Console.ForegroundColor = ConsoleColor.White;
                 MenuManager.MainMenu();
             }
             else
@@ -80,45 +84,51 @@ namespace CRUDAcademy_10022025.BLogic
                 Console.WriteLine();
                 MenuManager.MainMenu();
             }
-
         }
 
         public static void EliminaStudente()
         {
             string rowSeparator = new string('-', 100);
 
-           
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine(rowSeparator);
-            Console.ForegroundColor = ConsoleColor.White;
-
-            Console.WriteLine("Quale di questi studenti vuoi eliminare? Inserisci l'identificativo");
-            MostraStudenti();
-            string deletingId = Console.ReadLine();
-            foreach (var s in studenti)
+            Console.Clear();
+            if (studenti.Count == 0)
             {
-                if(deletingId == s.Id)
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Non ci sono studenti nell'archivio");
+                Console.WriteLine(rowSeparator);
+                Console.ForegroundColor = ConsoleColor.White;
+                MenuManager.MainMenu();
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("Quale di questi studenti vuoi eliminare? Inserisci l'identificativo");
+                Console.ForegroundColor = ConsoleColor.White;
+                foreach (var s in studenti)
                 {
-                    Console.WriteLine($"Sei sicuro di voler eliminare {s.Nome} {s.Cognome} di {s.Città}?");
-                    Console.WriteLine("Premi S se vuoi eliminarlo, altrimenti premi un altro tasto per tornare nel menù principale");
-                    string responseDeleteConfirm = Console.ReadLine().ToUpper();
-                    if(responseDeleteConfirm == "S")
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine(rowSeparator);
+                    Console.WriteLine($"{s.Nome} {s.Cognome} - {s.Città}, {s.Indirizzo} - Email: {s.Email} - Telefono: {s.Telefono} - Identificativo: {s.Id}");
+                    Console.ForegroundColor = ConsoleColor.White;
+                    string deletingId = Console.ReadLine();
+                    if (deletingId == s.Id)
                     {
-                        studenti.Remove(s);
-                        Console.WriteLine("Hai cancellato lo studente con successo");
-                        MenuManager.MainMenu();
+                        Console.WriteLine($"Sei sicuro di voler eliminare {s.Nome} {s.Cognome} di {s.Città}?");
+                        Console.WriteLine("Premi S se vuoi eliminarlo, altrimenti premi un altro tasto per tornare nel menù principale");
+                        string responseDeleteConfirm = Console.ReadLine().ToUpper();
+                        if (responseDeleteConfirm == "S")
+                        {
+                            studenti.Remove(s);
+                            Console.WriteLine("Hai cancellato lo studente con successo");
+                            MenuManager.MainMenu();
+                        }
                     }
                 }
             }
-
         }
 
-        public static void AggiornaPartecipante()
-        {
 
-        }
-
-        public static void IdCreator(string nome, string cognome)
+        public static void AggiornaStudente()
         {
 
         }
