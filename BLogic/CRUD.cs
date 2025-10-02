@@ -83,8 +83,33 @@ namespace CRUDAcademy_10022025.BLogic
 
         }
 
-        public static void EliminaPartecipante()
+        public static void EliminaStudente()
         {
+            string rowSeparator = new string('-', 100);
+
+           
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(rowSeparator);
+            Console.ForegroundColor = ConsoleColor.White;
+
+            Console.WriteLine("Quale di questi studenti vuoi eliminare? Inserisci l'identificativo");
+            MostraStudenti();
+            string deletingId = Console.ReadLine();
+            foreach (var s in studenti)
+            {
+                if(deletingId == s.Id)
+                {
+                    Console.WriteLine($"Sei sicuro di voler eliminare {s.Nome} {s.Cognome} di {s.Città}?");
+                    Console.WriteLine("Premi S se vuoi eliminarlo, altrimenti premi un altro tasto per tornare nel menù principale");
+                    string responseDeleteConfirm = Console.ReadLine().ToUpper();
+                    if(responseDeleteConfirm == "S")
+                    {
+                        studenti.Remove(s);
+                        Console.WriteLine("Hai cancellato lo studente con successo");
+                        MenuManager.MainMenu();
+                    }
+                }
+            }
 
         }
 

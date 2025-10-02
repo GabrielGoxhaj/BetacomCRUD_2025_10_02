@@ -40,7 +40,7 @@ namespace CRUDAcademy_10022025.BLogic
                     CRUD.MostraStudenti();
                     break;
                 case 3:
-                    Console.WriteLine("Hai scelto di aggiornare uno studente");
+                    CRUD.EliminaStudente();
                     break;
                 case 4:
                     Console.WriteLine("Hai scelto di eliminare uno studente");
