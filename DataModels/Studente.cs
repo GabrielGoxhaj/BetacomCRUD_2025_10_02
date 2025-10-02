@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 
 namespace CRUDAcademy_10022025.DataModels
 {
-    public class Anagrafica
+    public class Studente
     {
+        [Key]
+        public string Id { get; set; }
+
         [Required]
         public string Nome { get; set; }
 
@@ -26,7 +29,7 @@ namespace CRUDAcademy_10022025.DataModels
         public string Email { get; set; }
 
         [Required]
-        public int Telefono { get; set; }
+        public uint Telefono { get; set; }
 
         public List<Hobby> Hobby { get; set; } = [];
     }

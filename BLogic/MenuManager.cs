@@ -13,8 +13,7 @@ namespace CRUDAcademy_10022025.BLogic
             string rowSeparator = new string('-', 100);
 
             Console.ForegroundColor = ConsoleColor.Blue;
-            Console.WriteLine("Benvenuto nel CRUD dell'Academy .NET n°8 di Betacom!");
-            Console.WriteLine("Cosa vuoi fare oggi? Inserisci il numero per l'opzione che più ti garba");
+            Console.WriteLine("===== Menù Studenti Betacom =====");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("1. Aggiungere studente");
@@ -35,16 +34,16 @@ namespace CRUDAcademy_10022025.BLogic
             switch (scelta)
             {
                 case 1:
-                    Console.WriteLine("Hai scelto di aggiungere uno studente");
+                    CRUD.CreaStudente();
                     break;
                 case 2:
-                    Console.WriteLine("Hai scelto di vedere tutti gli studenti salvati");
+                    CRUD.MostraStudenti();
                     break;
                 case 3:
                     Console.WriteLine("Hai scelto di aggiornare uno studente");
                     break;
                 case 4:
-                    Console.WriteLine("Hai scelto di brasare via uno studente");
+                    Console.WriteLine("Hai scelto di eliminare uno studente");
                     break;
                 case 5:
                     Console.WriteLine("Adieau e buon caffè");
