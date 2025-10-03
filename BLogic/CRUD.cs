@@ -313,7 +313,7 @@ namespace CRUDAcademy_10022025.BLogic
 
         public static void WriteAddedStudentFile(List<Studente> studenti)
         {
-            string fileName = "StudentiListAdded.txt"; // gli assegno direttamente io l'estensione del file
+            string fileName = "StudentiList.txt";
             string filePath = "C:\\Temp";
             string todayDate = string.Empty;
             StringBuilder strStudentiFile = new();
@@ -321,9 +321,30 @@ namespace CRUDAcademy_10022025.BLogic
             foreach (Studente studente in studenti)
             {
                 string DateTime = System.DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
-                strStudentiFile.AppendLine($"Inserito in: {DateTime} - {studente.Nome} {studente.Cognome} ; Città: {studente.Città} ; Numero di telefono: {studente.Telefono}");
+                strStudentiFile.AppendLine($"{studente.Nome};{studente.Cognome};{studente.Città};{studente.Indirizzo};{studente.Telefono};{studente.Id}");
             }
+            // Inserito in: {DateTime} - 
             File.WriteAllText(Path.Combine(filePath, fileName), strStudentiFile.ToString());
         }
-    }
+
+        public static List<Studente> ReadStudentsFile()
+        {
+            List<Studente> list = [];
+            string fileName2 = "StudentiList.txt";
+            string filePath = "C:\\Temp";
+            string[] studentiTxt = File.ReadAllLines(Path.Combine(filePath, fileName2));
+            foreach (string studente in studentiTxt)
+            {
+                list.Add(
+                    new Studente
+                    {
+                        Nome = studente.Split(';')[0],
+                        Cognome = studente.Split(';')[1],
+                        Città = studente.Split(';')[2],
+                        Indirizzo = studente.Split(';')[3],
+                        Telefono = Convert.ToUInt16(studente.Split(";")[5]),
+                        Id = studente.Split(';')[6],
+                    });
+            }
+        }
 }
