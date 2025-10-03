@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRUDAcademy_10022025.DataModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,10 +23,8 @@ namespace CRUDAcademy_10022025.BLogic
             Console.WriteLine("5. Creare un hobby per uno degli studenti");
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("6. Chiudere il programma");
-
             Console.ForegroundColor = ConsoleColor.Blue;
             Console.WriteLine(rowSeparator);
-
             Console.ForegroundColor = ConsoleColor.White;
 
             int scelta = Convert.ToInt16(Console.ReadLine());

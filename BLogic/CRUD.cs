@@ -10,8 +10,8 @@ namespace CRUDAcademy_10022025.BLogic
 {
     public class CRUD
     {
-        private static List<Studente> studenti = new();
-        private static List<Hobby> hobbies = new();
+        public static List<Studente> studenti = new();
+        public static List<Hobby> hobbies = new();
         public static void CreaStudente()
         {
             string rowSeparator = new string('-', 100);
