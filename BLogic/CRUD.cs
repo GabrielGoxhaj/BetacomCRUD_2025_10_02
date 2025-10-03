@@ -62,7 +62,7 @@ namespace CRUDAcademy_10022025.BLogic
             MenuManager.MainMenu();
         }
 
-        public static async Task MostraStudenti()
+        public static void MostraStudenti()
         {
             Console.Clear();
             string rowSeparator = new string('-', 150);
@@ -146,86 +146,96 @@ namespace CRUDAcademy_10022025.BLogic
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine("Quale di questi studenti vuoi aggiornare?");
                 Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(rowSeparator);
+                Console.ForegroundColor = ConsoleColor.White;
                 foreach (var s in studenti)
                 {
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine(rowSeparator);
-                    Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"{s.Nome} {s.Cognome} - {s.Città}, {s.Indirizzo} - Email: {s.Email} - Telefono: {s.Telefono} - Identificativo: {s.Id}");
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine(rowSeparator);
                     Console.ForegroundColor = ConsoleColor.White;
-                    string editingId = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine("===== Menù Modifica Studente =====");
-                    Console.WriteLine("Cosa vuoi modifica? Inserisci il numero di ciò che vuoi fare");
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("1. Nome");
-                    Console.WriteLine("2. Cognome");
-                    Console.WriteLine("3. Città");
-                    Console.WriteLine("4. Indirizzo");
-                    Console.WriteLine("5. Email");
-                    Console.WriteLine("6. Telefono");
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("7. Tornare al menù principale");
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    Console.WriteLine(rowSeparator);
-                    Console.ForegroundColor = ConsoleColor.White;
+                }
 
-                    int scelta = Convert.ToInt16(Console.ReadLine());
-                    string risposta = "";
+                Console.Write("Inserisci l'identificativo dello studente:");
+                string editingId = Console.ReadLine();
+                var studente = studenti.FirstOrDefault(x => x.Id == editingId);
+                if (editingId == "null")
+                {
+                    Console.WriteLine("Lo studente non è stato trovato!");
+                    Loading();
+                    AggiornaStudente();
+                    return;
+                }
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine("===== Menù Modifica Studente =====");
+                Console.WriteLine("Cosa vuoi modificare? Inserisci il numero di ciò che vuoi fare");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("1. Nome");
+                Console.WriteLine("2. Cognome");
+                Console.WriteLine("3. Città");
+                Console.WriteLine("4. Indirizzo");
+                Console.WriteLine("5. Email");
+                Console.WriteLine("6. Telefono");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("7. Tornare al menù principale");
+                Console.ForegroundColor = ConsoleColor.Blue;
+                Console.WriteLine(rowSeparator);
+                Console.ForegroundColor = ConsoleColor.White;
+                int scelta = Convert.ToInt16(Console.ReadLine());
+                string risposta = "";
 
-                    switch (scelta)
-                    {
-                        case 1:
-                            Console.WriteLine($"Inserisci un nuovo nome per {s.Nome} {s.Cognome}");
-                            s.Nome = Console.ReadLine();
-                            Console.WriteLine($"Hai cambiato il nome in {s.Nome} correttamente");
-                            Loading();
-                            AggiornaStudente();
-                            break;
-                        case 2:
-                            Console.WriteLine($"Inserisci un nuovo cognome per {s.Nome} {s.Cognome}");
-                            s.Cognome = Console.ReadLine();
-                            Console.WriteLine($"Hai cambiato il nome in {s.Cognome} correttamente");
-                            Loading();
-                            AggiornaStudente();
-                            break;
-                        case 3:
-                            Console.WriteLine($"Modifica la città di provenienza di {s.Nome} {s.Cognome}");
-                            s.Città = Console.ReadLine();
-                            Console.WriteLine($"Hai cambiato la città di provenienza in {s.Città} correttamente");
-                            Loading();
-                            AggiornaStudente();
-                            break;
-                        case 4:
-                            Console.WriteLine($"Inserisci un nuovo indirizzo di residenza per {s.Nome} {s.Cognome}");
-                            s.Indirizzo = Console.ReadLine();
-                            Console.WriteLine($"Hai cambiato l'indirizzo di residenza in: {s.Indirizzo} correttamente");
-                            Loading();
-                            AggiornaStudente();
-                            break;
-                        case 5:
-                            Console.WriteLine($"Inserisci una nuova email per {s.Nome} {s.Cognome}");
-                            s.Email = Console.ReadLine();
-                            Console.WriteLine($"Hai cambiato l'email in: {s.Email} correttamente");
-                            Loading();
-                            AggiornaStudente();
-                            break;
-                        case 6:
-                            Console.WriteLine($"Inserisci un nuovo numero di telefono per {s.Nome} {s.Cognome}");
-                            s.Telefono = Convert.ToUInt32(Console.ReadLine());
-                            Console.WriteLine($"Hai cambiato l'indirizzo di residenza in: {s.Telefono} correttamente");
-                            Loading();
-                            AggiornaStudente();
-                            break;
-                        case 7:
-                            LoadingMenu();
-                            break;
-                    }
+                switch (scelta)
+                {
+                    case 1:
+                        Console.WriteLine($"Inserisci un nuovo nome per {studente.Nome} {studente.Cognome}");
+                        studente.Nome = Console.ReadLine();
+                        Console.WriteLine($"Hai cambiato il nome in {studente.Nome} correttamente");
+                        Loading();
+                        AggiornaStudente();
+                        break;
+                    case 2:
+                        Console.WriteLine($"Inserisci un nuovo cognome per {studente.Nome} {studente.Cognome}");
+                        studente.Cognome = Console.ReadLine();
+                        Console.WriteLine($"Hai cambiato il nome in {studente.Cognome} correttamente");
+                        Loading();
+                        AggiornaStudente();
+                        break;
+                    case 3:
+                        Console.WriteLine($"Modifica la città di provenienza di {studente.Nome} {studente.Cognome}");
+                        studente.Città = Console.ReadLine();
+                        Console.WriteLine($"Hai cambiato la città di provenienza in {studente.Città} correttamente");
+                        Loading();
+                        AggiornaStudente();
+                        break;
+                    case 4:
+                        Console.WriteLine($"Inserisci un nuovo indirizzo di residenza per {studente.Nome} {studente.Cognome}");
+                        studente.Indirizzo = Console.ReadLine();
+                        Console.WriteLine($"Hai cambiato l'indirizzo di residenza in: {studente.Indirizzo} correttamente");
+                        Loading();
+                        AggiornaStudente();
+                        break;
+                    case 5:
+                        Console.WriteLine($"Inserisci una nuova email per {studente.Nome} {studente.Cognome}");
+                        studente.Email = Console.ReadLine();
+                        Console.WriteLine($"Hai cambiato l'email in: {studente.Email} correttamente");
+                        Loading();
+                        AggiornaStudente();
+                        break;
+                    case 6:
+                        Console.WriteLine($"Inserisci un nuovo numero di telefono per {studente.Nome} {studente.Cognome}");
+                        studente.Telefono = Convert.ToUInt32(Console.ReadLine());
+                        Console.WriteLine($"Hai cambiato l'indirizzo di residenza in: {studente.Telefono} correttamente");
+                        Loading();
+                        AggiornaStudente();
+                        break;
+                    case 7:
+                        LoadingMenu();
+                        break;
                 }
             }
         }
+        
 
         public static void CreaHobby()
         {
@@ -260,6 +270,7 @@ namespace CRUDAcademy_10022025.BLogic
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine(rowSeparator);
             Console.WriteLine($"L'hobby {hobby.Nome} ({hobby.Descrizione}, iniziato nell'anno {hobby.AnnoInizio}) è stato creato con successo");
+            Thread.Sleep(200);
             Console.ForegroundColor = ConsoleColor.White;
             LoadingMenu();
             MenuManager.MainMenu();
@@ -269,19 +280,22 @@ namespace CRUDAcademy_10022025.BLogic
         {
             string rowSeparator = new string('-', 100);
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(rowSeparator);
-            Console.WriteLine("Caricando il menù principale...");
-            Thread.Sleep(2000);
-            Console.WriteLine(rowSeparator);
+            Thread.Sleep(1000);
+            Console.Clear();
+            Console.WriteLine("Caricando, attendere prego.");
+            Thread.Sleep(500);
+            Console.Clear();
+            Console.Write("Caricando, attendere prego..");
+            Thread.Sleep(500);
+            Console.Clear();
+            Console.Write("Caricando, attendere prego...");
+            Thread.Sleep(500);
             Console.ForegroundColor = ConsoleColor.White;
         }
         public static void LoadingMenu()
         {
             string rowSeparator = new string('-', 100);
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Caricando il menù principale...");
-            Thread.Sleep(2000);
-            Console.ForegroundColor = ConsoleColor.White;
+            Loading();
             MenuManager.MainMenu();
         }
 
