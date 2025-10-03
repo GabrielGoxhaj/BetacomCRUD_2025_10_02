@@ -1,10 +1,11 @@
-﻿using CRUDAcademy_10022025.DataModels;
+﻿using CRUDAcademy_10022025.BLogic;
+using CRUDAcademy_10022025.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
-using CRUDAcademy_10022025.BLogic;
 
 namespace CRUDAcademy_10022025.BLogic
 {
@@ -58,6 +59,7 @@ namespace CRUDAcademy_10022025.BLogic
             Console.WriteLine($"Lo studente {studente.Nome} {studente.Cognome} è stato creato con successo");
             Console.WriteLine(rowSeparator);
             Console.ForegroundColor = ConsoleColor.White;
+            WriteAddedStudentFile(studenti);
             LoadingMenu();
             MenuManager.MainMenu();
         }
@@ -235,7 +237,7 @@ namespace CRUDAcademy_10022025.BLogic
                 }
             }
         }
-        
+
 
         public static void CreaHobby()
         {
@@ -307,6 +309,21 @@ namespace CRUDAcademy_10022025.BLogic
             Console.ForegroundColor = ConsoleColor.White;
             LoadingMenu();
             MenuManager.MainMenu();
+        }
+
+        public static void WriteAddedStudentFile(List<Studente> studenti)
+        {
+            string fileName = "StudentiListAdded.txt"; // gli assegno direttamente io l'estensione del file
+            string filePath = "C:\\Temp";
+            string todayDate = string.Empty;
+            StringBuilder strStudentiFile = new();
+
+            foreach (Studente studente in studenti)
+            {
+                string DateTime = System.DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
+                strStudentiFile.AppendLine($"Inserito in: {DateTime} - {studente.Nome} {studente.Cognome} ; Città: {studente.Città} ; Numero di telefono: {studente.Telefono}");
+            }
+            File.WriteAllText(Path.Combine(filePath, fileName), strStudentiFile.ToString());
         }
     }
 }
