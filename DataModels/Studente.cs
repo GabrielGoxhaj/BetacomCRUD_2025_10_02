@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUDAcademy_10022025.DataModels
+namespace BetacomCRUD_2025_10_02.DataModels
 {
     public class Studente
     {

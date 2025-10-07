@@ -1,11 +1,10 @@
-﻿using CRUDAcademy_10022025.DataModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CRUDAcademy_10022025.BLogic
+namespace BetacomCRUD_2025_10_02.BLogic
 {
     public class MenuManager
     {
